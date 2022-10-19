@@ -1,0 +1,250 @@
+                                 
+                                    
+day-1
+								  what is java?
+								  
+								   java is object oriented programming language
+								   
+								   
+	
+  what is the goal of programming language?
+
+   
+            to develop the software/application 
+
+ 			
+	we do have two types of applications 
+	
+	 1.desktop application 
+	 
+	   desktop applications results are not sharable across the globe.
+	   
+	   
+	   calculator
+	   acroabtic reader
+	   antivirus.
+	   ....
+	   
+	   
+	 2.distributed application
+	 
+	   results are sharable across the globe make sure you have proper internet connection.
+	   
+	   
+	   facebook
+	   gmail
+	   flipkart
+	   amazon...
+	   
+	
+java got released in which year:
+  1995
+who is author?
+  james gosling 
+he released this software from which organization?
+
+ sunmicrosystem
+
+
+
+
+
+ he releaesd this software into threee editions
+ 
+ 
+  1.jse
+  
+     ->desktop applications
+	 
+  2.jee
+  
+      ->desktop applications + distrubuted applications
+	  
+	  
+  3.jme
+  
+     ->java micro/mobile edition 
+	 
+	 android 
+  
+significance of learning core java/jse:
+
+->to implement desktop applications/standalone applications
+
+->to learn jee
+
+->to learn popular tools mulesoft,salesforce,tableu,hadoop...
+
+
+
+1995
+27 years back 
+
+  because of it's java unique features.
+  
+  -13 features
+  
+  -simple
+  -pi
+  -an
+  -dynamic
+  -interpreted
+  -multithreaded
+  -secured
+  -portable
+  -object oriented 
+  
+  ....
+  
+
+platform independent:
+`````````````````````
+
+ c is platform dependent
+ 
+ 
+ <filename>.c -> compile -> .exe ->windows os
+ 
+ unix operating system 
+ 
+   can't 
+   
+ 
+  compiled 
+  executed
+  
+  
+platform independent:
+ 
+  .java ->.class file ->windows os
+  
+  yes
+  
+  java slogan -> wora -> write once run anywhere
+  
+  
+  java software 
+  
+   
+  
+why java is object oriented?
+
+ since this pl follows oops principles ->omg(object management group)-candian organization 
+ 
+ 
+ 
+ inheritance
+ polymorphism
+ abstraction 
+ encapsulation 
+ 
+ .net,pyhton,php,cpp...
+ 
+ 
+
+
+java is open source
+
+java is case sensitive programming language
+
+
+java -> sunmicrosystem
+
+in recent years copy rights of sunmicrosystem reserved by oracle corporation 
+
+ 
+  scjp
+  
+  ocjp
+  
+  
+  url: www.oracle.com (signup) 
+  
+   
+   
+  
+prerequistites to write the java program:
+`````````````````````````````````````````
+1.download the java software(jdk) and then install
+2.select the editor (notepad,some ide's)eclipse,netbeans,myeclipse, 
+2.write the java program 
+4.save this java progra (<filename>.java)
+5.compile the java program (.class)->java compiler
+6.execute the java program ->output ->java interpretor (jvm)
+
+
+jdk,jre,jvm:
+```````````
+
+jdk 
+  java development kit
+  https://www.oracle.com/in/java/technologies/downloads/
+  
+  
+i wanted to cross check whether it gets installed or not?
+
+open comand prompt and pass below command
+
+  
+    cmd:/> java -version 
+	
+
+with this jdk?
+ am i able to write the java program 
+ yes
+ am i able to execute the java program 
+ yes
+ 
+ it provides 2 environments
+ 
+  1.development environments
+  2.runtime environments
+  
+  
+ jre: java runtime environment 
+ 
+ using this jre, 
+ are we able to develop the java programs?
+ no
+ are we able to execute the java applications
+ yes
+ 
+ 
+ jvm: 
+  java virtual machine
+  
+   using this we are able to execute the java program 
+   
+   
+
+jdk = developement environment + jre
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	   
+	 
+   
