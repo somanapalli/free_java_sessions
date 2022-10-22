@@ -850,13 +850,255 @@ class Demo
 
 
 
+
+day-4:
+```````
+
+byte     Byte
+short    Short
+int      Integer
+long     Long
+float    Float
+doube    Double
+char     Character
+boolean  Boolean
+
+
+  to convert primitive type to object type and viceversa.
+  
+  autoboxing: converting primitive type to object type.
+  autounboxing: converting object type to primitive type.
+  
+ide -> eclipse 
+
+ ide ->integrated development environment
+
+autointelligence
+note: the code which we are writing inside ide is autocompiled.
+
  
+eclipse is open source 
+ -apache software foundation 
+ url: https://www.eclipse.org/downloads/packages/release/helios/sr1/eclipse-ide-java-developers
+ 
+ 
+ 
+  
+
+
+
+example:
+````````
+
+public class Test {
+	
+	
+	public static void main(String[] args) {
+		//primitive type
+		int x = 100;
+
+		//auto boxing - primitive type to object type
+        Integer y = Integer.valueOf(x);
+        
+        //auto unboxing - objet type to primitive type
+        int z = y.intValue();
+        
+        System.out.println(z);
+       
+		
+	}
+
+}
 
 
 
 
+autoboxing and unboxing:
+`````````````````````````
+Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.
 
 
+from jdk 1.5 version onwards these conversions are happening automatically 
+by the java compiler.
+
+
+
+
+String to Object and Object to String Conversion:
+
+example:
+`````````
+
+public class Test {
+	
+	
+	public static void main(String[] args) {
+		//primitive type
+		int x = 100;
+
+		//auto boxing - primitive type to object type
+        Integer y = Integer.valueOf(x);
+        
+        String z = y.toString();
+        
+        //int number = Integer.parseInt(z);
+        Integer p = Integer.valueOf(z);
+        
+        System.out.println(z);
+       
+		
+	}
+
+}
+
+
+type casting:
+`````````````
+we can perform this type casting at two levels.
+
+ 1. at primitive level 
+ 2. at referecne/object level 
+
+
+type casting: 
+conversion of one type data into another type data.
+
+1. implicit type casting/widening type casting
+
+       converting lower type to higher type 
+	   
+	   
+	   it takes place 
+	   both data types must be compatile with each other 
+	   
+	   the target type must be larger than the source type.
+	   
+	   
+	   byte->short->char->int->long->float->double 
+	   
+
+example:
+`````````
+
+public class Test {
+	
+	
+	public static void main(String[] args) {
+		char c = 'a';
+		int x =c;
+		long y = x;
+		float z = y;
+		
+		System.out.println("before conversion, char value: " + c);
+		System.out.println("after conversion , int value: " + x);
+		System.out.println("after conversion , long value: " + y);
+		System.out.println("after conversion , float value: " + z);
+		
+	}
+
+}
+
+
+	    
+2. explicit type casting/narrowing type casting
+
+       converting higher type data to lower type data
+	   
+	   double -> flaot -> long -> int ->char ->short -> byte
+	   
+	   
+example:
+`````````
+
+public class Test {
+	
+	
+	public static void main(String[] args) {
+		double d = 456.666;
+		
+		//converting double data type into long data type
+		
+		long l = (long)d;
+		
+		//converting long data type into int dataype
+		
+		int i =(int)l;
+		
+		System.out.println("Before conversion: " + d);
+		System.out.println("After conversion into long type: " + l);
+		System.out.println("After conversion into int type: " + i);
+		
+	}
+
+}
+
+
+	   
+
+
+operator:
+
+ operator in java is a symbol that is used to perform operations.
+ 
+   unary operator
+   Arithmetic Operator
+   shift operator
+   relational operator
+   bitwise operator
+   logical operator
+   ternary operator
+   assignment operator
+   
+   
+unary operators require only one operand.
+
+   -incrementing/decrementing a value by one
+  
+   pre increment post increment 
+   
+   ++a   a++
+   
+   --a   a--
+   
+
+example:
+`````````
+
+public class Test {
+	
+	
+	public static void main(String[] args) {
+		int a=10;
+		System.out.println(a++);//10
+		System.out.println(++a);//12
+		System.out.println(a--);//12
+		System.out.println(--a);//10
+	
+	}
+
+}
+
+
+example:
+````````
+
+public class Test {
+	
+	
+	public static void main(String[] args) {
+		int a=10;
+		int b = 10;
+		System.out.println(a++ + ++a);//10+12->22
+		
+		System.out.println(b++ + b++);//10+11->21
+	
+	}
+
+}
+
+
+
+   
 
 
 
