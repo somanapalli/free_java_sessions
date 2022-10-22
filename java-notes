@@ -1096,6 +1096,373 @@ public class Test {
 
 }
 
+day-5:
+``````` 
+relational operators
+arithmetic operators(+,-,*,%,/)- to peroform arithmetic operators 
+bitwise operators
+shortcircuit operators
+ternary operator
+assignment operator
+
+
+
+
+example:
+`````````
+public class Test {
+public static void main(String[] args) {
+	
+		System.out.println(10+20);//30
+		System.out.println(10*20);//200
+		System.out.println(20-10);//10
+		System.out.println(20/10);//2
+		System.out.println(20%10);//0
+	
+		
+		
+	}
+
+}
+
+
+relational operators:
+``````````````````````
+
+to compare the values whether it is big or small 
+ 
+ <
+ <=
+ >
+ >=
+ !=
+ 
+example:
+`````````
+public class Test {
+public static void main(String[] args) {
+	
+		System.out.println(10>20);//false
+		System.out.println(10<20);//true
+		System.out.println(20!=10);//true
+		System.out.println(10==10);//true
+		
+		System.out.println((int)'a');
+		System.out.println('a'>10);//true
+	
+	
+		
+		
+	}
+
+}
+
+
+
+bitwise operators:
+``````````````````
+
+&-bitwise and
+
+  T T -T
+  T F -F
+  F T -F
+  F F -F
+  
+  
+|-bitwise or
+~-bitwise compliement
+^-bitwise xor
+ in case of bitwise xor 
+ 
+  if both arguments are true -> false
+  if both arguments are false -> false
+  if any one argument is true -> true
+  
+example:
+````````
+public class Test {
+public static void main(String[] args) {
+	
+		System.out.println(true&true);
+		System.out.println(true&false);//false
+		System.out.println(false&false);
+		System.out.println(false&true);
+	
+		System.out.println(Integer.toBinaryString(4));
+		System.out.println(Integer.toBinaryString(5));
+	    System.out.println(4&5);//4
+	    
+	    System.out.println(false|false);
+	    System.out.println(4|5);//5
+	    
+	    System.out.println(false^true);
+		
+	    System.out.println(4^5);
+	    
+	    System.out.println(~4);
+	    
+	    System.out.println(Integer.toBinaryString(-5));
+	
+	   
+	    
+	}
+
+}
+
+ 
+
+
+
+&&
+||
+
+in case of shortcirucit operators it won't check second argument if first argument is okay accordingly we will get the output. 
+
+because of this performance and time of execution gets improved.
+
+ternary operator:
+`````````````````
+String result = 10<20?"10 is lessthan 20":"10 is greater than 20"
+
+
+example:
+`````````
+public class Test {
+public static void main(String[] args) {
+	
+		int num1=20;
+		int num2=10;
+		
+		int result;
+		
+		result = (num1>num2)?(num1+num2):(num1-num2);
+		System.out.println(result);
+	}
+
+}
+
+
+note: we are using very frequently for an alternative of if-else blocks.
+
+
+
+control statements in java:
+```````````````````````````
+selection statements
+  if else
+  switch case
+  
+loop statements
+  for 
+  while
+  do while
+  for each 
+  
+transfer statements
+
+  break
+  continue
+  assert
+  
+  
+example:
+````````
+public class Test {
+public static void main(String[] args) {
+	
+		int num1=10;
+		int num2=10;
+		
+	    if(num1>num2)
+	    {
+	    	System.out.println(num1+num2);
+	    }
+	    else if(num1<num2)
+	    {
+	    	System.out.println(num1-num2);
+	    }
+	    else
+	    {
+	    	System.out.println("both the numbers are equal");
+	    }
+	}
+
+}
+
+
+switch case:
+`````````````
+switch(value or expression)
+{
+
+
+    case casevalue:
+	   body
+	   break;
+	   
+	case casevalue:
+	   body
+	   break;
+	   
+	default :
+	body;
+
+} 
+
+
+example:
+`````````
+public class Test {
+public static void main(String[] args) {
+	
+	
+	
+	int number=20;
+	//switch expression 
+	switch(number) {
+	
+	//case statements
+	
+	case 10: System.out.println("10"); 
+	
+	case 20: System.out.println("20");
+	
+	case 30: System.out.println("30");
+	
+	//default case statement
+	
+	default: System.out.println("not in 10, 20 or 30");
+	
+	}
+}//closing main()
+
+
+
+}//closing class
+
+
+looping statements:
+````````````````````
+while loop
+
+example:
+```````
+public class Test {
+	public static void main(String[] args) {
+	    int i=10;
+		
+		while(i<=1)
+		{
+			System.out.println(i);
+			i--;
+		}
+		
+		System.out.println("nothig is executed");
+	
+	}// closing main()
+
+}// closing class
+
+note:
+
+in case of while loop, when condition is true then only inside the while 
+loop statements will execute otherwise it will not execute.
+
+when should we go for while loop?
+
+when we are not aware about how many no.of time we would like to iterate
+then we will go for while loop.
+
+
+do while loop:
+`````````````
+in case of do while loop irresepective of condition is true or false
+atlease one time the loop statement will be executed.
+
+example:
+
+public class Test {
+	public static void main(String[] args) {
+	    int i=11;
+		do {
+			System.out.println(i);
+			i++;
+		}
+	    
+	    while (i<=10);
+		
+	}// closing main()
+
+}// closing class
+
+
+for loop:
+```````````
+
+ for(initialization;conditionchecking;increment/decrement)
+ {  
+   //body
+ }
+ 
+example:
+````````
+public class Test {
+	public static void main(String[] args) {
+	  
+		
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(i);
+		}
+		System.out.println("nothing is executed");
+	}// closing main()
+
+}// closing class
+
+example:
+``````````
+public class Test {
+	public static void main(String[] args) {
+	  
+		
+		for(int i=1;i<=10;i++)
+		{
+			
+			if(i%2==0)
+			{
+				System.out.println(i);
+			}
+			
+		}
+		//System.out.println("nothing is executed");
+	}// closing main()
+
+}// closing class
+
+
+
+
+continue:
+`````````
+public class Test {
+	public static void main(String[] args) {
+	  
+		
+		for(int i=1;i<=10;i++)
+		{
+			
+			if(i%2==0)
+			{
+				continue;
+			}
+			System.out.println(i);
+		}
+		//System.out.println("nothing is executed");
+	}// closing main()
+
+}// closing class
+
 
 
    
