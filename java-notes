@@ -1772,8 +1772,556 @@ constructor calling always must be the first executable statement otherwise
 we will get compile time error.
 
 
+day-7:
+``````
+
+package:
+````````
+package is a collection of classes,interfaces and sub pacakges
+
+  class - variables & methods
+  interface -> methods & constants
+  
+  Integer - java.lang package
+  
+     all the predefined classes/interfaces are available in different
+	 packages.
+	 
+jse,jee & jme
+ 
+ jse has some predefined /builtin packages
+note:
+all the core java packages usually starts with java.
+
+
+java.applet
+java.awt
+java.awt.color
+java.awt.datatransfer
+java.awt.dnd
+java.awt.event
+java.awt.font
+java.awt.geom
+java.awt.im
+java.awt.im.spi
+java.awt.image
+java.awt.image.renderable
+java.awt.print
+java.beans
+java.beans.beancontext
+java.io
+
+
+java.lang- default imported package
+
+java.lang.annotation
+java.lang.instrument
+java.lang.invoke
+java.lang.management
+java.lang.ref
+java.lang.reflect
+java.math
+java.net
+java.nio
+java.nio.channels
+java.nio.channels.spi
+java.nio.charset
+java.nio.charset.spi
+java.nio.file
+java.nio.file.attribute
+java.nio.file.spi
+java.rmi
+java.rmi.activation
+java.rmi.dgc
+java.rmi.registry
+java.rmi.server
+java.security
+java.security.acl
+java.security.cert
+java.security.interfaces
+java.security.spec
+java.sql -
+java.text
+java.text.spi
+java.util
+java.util.concurrent
+java.util.concurrent.atomic
+java.util.concurrent.locks
+java.util.jar
+java.util.logging
+java.util.prefs
+java.util.regex
+java.util.spi
+java.util.zip
 
  
+ purpose:
+ ````````
+ reusability
+ avoid naming conflicts
+ 
+ 
+how to define the package:
+`````````````````````````
+
+  package <packagename>;
+  class 
+  interface
+  
+  
+ note: package statement always must be the first executable statement in java.
+
+ 
+ naming convention for package:
+ 
+  <reverseof your company domain>.<projectname>.<modulename>;
+  
+   com.infy.banking.withdrawl;
+   
+   
+ how can we import the classes/interfaces from packages:
+
+   
+ import <pacakagename>.<classname>/<interfacename>
+
+ import <packagename>.*;
+ 
+
+when import is required?
+
+  import is required when we are trying to access the properties of 
+  differnt package from different package.
+  
+  
+Test1.java:
+````````````
+package p1;
+public class Test1 {
+	
+	public void sum(int x, int y)
+	{
+		System.out.println("sum is: " +(x+y));
+	}
+	
+
+}
+
+  
+Test2.java:
+````````````
+package p1;
+
+public class Test2 {
+	
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(2, 3);
+	}
+
+}
+
+
+Test2:
+```````
+
+package p2;
+import p1.Test1;
+
+public class Test2 {
+
+	 public static void main(String[] args) {
+		
+		 Test1 obj = new Test1();
+		 obj.sum(3, 4);
+	 
+	}
+}
+
+
+
+note:
+````
+by importing the main package, we are able to access only main package 
+related properties 
+
+by importing the main package, we won't get a chance to access sub package 
+properties if we want to use sub package(s) properties we have to import 
+sub package explicitly .
+
+Test1.java:
+```````````
+package p1;
+public class Test1 {
+	
+	public void sum(int x, int y)
+	{
+		System.out.println("sum is: " +(x+y));
+	}
+	
+
+}
+
+Test2.java:
+````````````
+package p1.p2;
+
+public class Test2 {
+	
+	public void mul(int x, int y)
+	{
+		System.out.println("multiplication : " + (x*y));
+	}
+
+}
+
+Test3.java:
+package p3;
+
+import p1.*;
+import p1.p2.Test2;
+
+public class Test3 {
+	
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3, 4);
+		
+		Test2 obj1 = new Test2();
+		obj1.mul(3, 4);
+		
+		
+	}
+
+}
+
+example on avoiding naming conflicts:
+````````````````````````````````````
+Test1.java:
+``````````
+package p1;
+
+public class Test1 {
+	
+	public void sum(int x, int y)
+	{
+	System.out.println("sum: " + (x+y));
+	}
+
+}
+
+Test1.java:
+```````````
+package p2;
+
+public class Test1 {
+	
+	public void mul(int x, int y)
+	{
+	System.out.println("multiplication: " + (x*y));
+	}
+
+}
+
+Test3.java:
+`````````````
+package p3;
+import p1.Test1;
+
+
+public class Test3 {
+	public static void main(String[] args) {
+		
+		
+		Test1 obj = new Test1();
+		obj.sum(3, 4);
+		
+		p2.Test1 obj1 = new p2.Test1();
+		obj1.mul(3,4);
+		
+	}
+
+}
+
+
+
+
+access modifiers:
+``````````````````
+
+
+these access modifiers are used to control the visiblity of the data
+over the packages.
+
+
+  private
+  
+  default(is not a keyword)
+  
+  protected
+  
+  public
+  
+ 
+
+private:
+`````````
+  
+   private properties only we are able to access with in the class 
+   we are not allowed to access outside the class even if it belongs 
+   to same pacakge. 
+   
+
+Test1.java:
+```````````
+package p1;
+public class Test1 {
+	
+	private void sum(int x, int y)
+	{
+		System.out.println("sum is: " +(x+y));
+	}
+	
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3, 4);
+	}
+
+}
+
+Test2.java:
+```````````
+package p1;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3,4);
+	}
+}
+
+note:
+when we are trying to access private properties from outside the class 
+we will get compile time error saying that property is not visible.
+
+
+
+   
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+default:
+
+  with in the class we can access
+  
+  outside the class from same package we can access
+  
+  from different package(s) classe we can't access 
+  we will get compile time error -> saying that -> property not visible.
+  
+  
+  
+Test1.java:
+`````````````
+package p1;
+public class Test1 {
+	//default property
+    void sum(int x, int y)
+	{
+		System.out.println("sum is: " +(x+y));
+	}
+	
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3, 4);
+	}
+
+}
+
+Test2.java:
+`````````````
+package p1;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3,4);
+	}
+}
+
+
+Test3.java:
+``````````
+package p2;
+import p1.Test1;
+public class Test3 {
+
+	public static void main(String[] args) {
+		
+		Test1 obj= new Test1();
+		obj.sum(3,4);
+		
+	}
+}
+
+
+protected:
+``````````
+   with in the class
+   same package another class we can access
+   differnt package child classes we can  access? 
+   from different pacakge independent classes we can't access.
+   
+   
+ Test1.java:
+ ````````````
+ package p1;
+public class Test1 {
+	//protected property
+    protected void sum(int x, int y)
+	{
+		System.out.println("sum is: " +(x+y));
+	}
+	
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3, 4);
+	}
+
+}
+
+Test2.java:
+````````````
+package p1;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3,4);
+	}
+}
+
+
+Test3.java:
+````````````
+package p2;
+import p1.Test1;
+
+//different package child class
+public class Test3 extends Test1 {
+
+	public static void main(String[] args) {
+		
+		Test3 obj= new Test3();
+		obj.sum(3,4);
+		
+	}
+}
+
+
+public :
+```````
+if you define any property as public we don't have any restriction 
+from anywhere we can access. 
+
+   public .
+    
+	  with in the class
+	  same pacakge other classes
+	  diffeente package classes 
+	  
+	  
+	  
+Test1.java:
+`````````````
+package p1;
+public class Test1 {
+	//public property
+    public void sum(int x, int y)
+	{
+		System.out.println("sum is: " +(x+y));
+	}
+	
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3, 4);
+	}
+
+}
+
+
+Test2.java:
+````````````
+package p1;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+		
+		Test1 obj = new Test1();
+		obj.sum(3,4);
+	}
+}
+
+Test3.java:
+````````````
+package p2;
+import p1.Test1;
+
+//different package independent class
+public class Test3 {
+
+	public static void main(String[] args) {
+		
+		Test1 obj= new Test1();
+		obj.sum(3,4);
+		
+	}
+}
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
 
   
 
