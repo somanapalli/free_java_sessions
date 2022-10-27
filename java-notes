@@ -2303,7 +2303,7 @@ public class Test3 {
 		Test1 obj= new Test1();
 		obj.sum(3,4);
 		
-	}
+	}ss
 }
 
 
@@ -2314,16 +2314,361 @@ public class Test3 {
 
 
 
+day-8:
+```````
 
+oops principles:
 
+java is object oriented programming language
 
-
-
-
-
-
-
+  because it is following oops principles 
   
+   
+    1.inheritance
+	2.polymorphism
+	3.abstraction 
+	4.encapsulation 
+	
+	
+inheritance:
+````````````
+ inheritance is the process of acquiring the properties from parent class 
+ to child class.
+ 
+ inhreitance is also known as is-a relation.
+ 
+ to achieve the concept of inheritance we require minimum two classes
+ with parent-child relation.
+ 
+ 
+ ->reusablity
+ ->code redundancy will be decreased
+ ->performance of the application will be improved.
+ 
+ 
+polymorphism:
+`````````````
+defining one action into many forms.
+
+
+  class  person --> mentor object
+  
+  -->class son object
+  
+  -> class customer 
+  
+  compiletime polymorphism
+  runtime polymorphism
+  
+->it allows programmers to reuse, evaluate and execute the program
+->reducess coupling betwee different functioanlites.
+
+ ->method overloading->readability of the code
+ ->method overriding
+ 
+   float rateOfInterest()
+   {
+   return 4.5f;
+   }
+ 
+ 
+abstraction:
+`````````````
+it is the process of retrieving required details.
+by ignoring irrelevant details.
+
+
+  ->interface 
+
+ >security
+ >modularity
+ 
+  
+encapsulation:
+``````````````
+it is the process of wrappingup of variables and methods into a single unit.
+
+
+  class is best example for encapsulation
+  
+  
+  datahiding
+  
+  
+benefits of oops principles:
+
+  ->enhancements
+  ->resuablity
+  ->security
+  ->modularity
+  ->easy maintainence
+  ->debugging etc..
+  
+  
+using two concepts
+ class
+ object
+ 
+
+inheritance:
+````````````
+
+it is the process of taking the properties from parent class
+to child class.
+
+
+parent class:
+
+it is a class which is giving the properties
+
+child class:
+
+it is also a class which is taking the properties
+
+
+example:
+````````
+
+Parent.java:
+````````````
+
+package com.jse.inheritance;
+
+public class Parent {
+	
+	public void sum(int x, int y)
+	{
+		System.out.println("sum: " + (x+y));
+	}
+
+}
+
+Child.java:
+```````````
+package com.jse.inheritance;
+
+public class Child extends Parent{
+
+	public void sub(int x, int y)
+	{
+		System.out.println("substraction: " + (x-y));
+	}
+}
+
+Test1.java:
+```````````
+package com.jse.inheritance;
+
+public class Test1 {
+	
+	public static void main(String[] args) {
+		
+		//Parent obj = new Parent();
+		Child obj = new Child();
+		
+		obj.sum(3, 4);
+		obj.sub(4, 3);
+		
+	}
+
+}
+
+note:
+`````
+using extends keyword we are able to acheive the inheritance concept.
+
+we should always use extends keyword in the context of child class only.
+
+
+note:
+`````
+for every java class whether it is predefined or userdefined 
+we have one super class i.e. 
+java.lang.Object
+
+exaple:
+`````````
+
+package com.jse.inheritance;
+
+public class Test2 {
+	
+	public void m1()
+	{
+		System.out.println("Test2 - m1 method");
+	}
+	public static void main(String[] args) {
+		
+		Test2 obj = new Test2();
+		obj.m1();
+		
+		Test2 obj1 = new Test2();
+		System.out.println(obj.hashCode());
+		System.out.println(obj.getClass());
+		System.out.println(obj.toString());
+		
+	}
+
+}
+
+note:
+`````
+whenever we are displaying any java class object, it is internally invokes
+toString() method of the class.
+
+
+types of inheritances:
+```````````````````````
+  single inheritance
+  multilevel inheritance
+    multiple inheritance -not possible through the concept of classes.
+  hierarchical inheritance
+  hybrid inheritance
+  
+  
+simple inheriance:
+ 
+   it contains one parent class one child class
+   
+   
+  
+A
+|
+B
+
+multilevel inheritance:
+
+it contains one parent class, one child class and multiple intermediate 
+parent classe(s).
+
+
+
+A
+|
+B
+|
+C
+
+  class A {}
+  class B extends A{}
+  class C extends B {}
+  
+
+intermediate parent class:
+this is also a class in one context it is acting as child class and in 
+another context it is acting as a child class. 
+
+
+multiple inheritance:
+``````````````````````
+
+  A B C ...
+  
+    Z
+	
+	mutliple inheritance contains 
+	multiple parent clases 
+	and single child class .
+	
+	class A{ m1()}
+	class B{ m1()}
+	class C{ m1()}...
+	
+	class Z extends A,B,C...
+	{
+	  Z obj = new Z();
+	  obj.m1();
+	}
+	
+note:
+`````
+using extends keyword we are always extending one class at a time.
+
+hierarchical inheriance:
+````````````````````````
+    A
+
+B   C  D....
+
+
+It contains single parent class and multiple child classes
+
+
+class A{}
+
+class B extends A{}
+class C extends A{}
+class D extends A{}
+
+
+
+Hybrid inheritance:
+
+  it is a combination of any two possbile inheritance type(S).
+  
+  A 
+  |
+  B
+  |
+C  D  E ...
+
+Make sure in that combination multiple inheritance is not allowed.
+
+note:
+````
+when we apply the inheritance concept, it is highly recommended to create
+the object for child class.
+
+when we create the object for child class, two memory copies won't be 
+generated for both parent class and child class only one memory copy 
+gets generated and that will be accessed by both parent class and as wella
+as child class.
+
+
+Parent.java:
+`````````````
+package com.jse.inheritance;
+
+public class Parent  {
+	
+	public Parent()
+	{
+		System.out.println(this.hashCode());
+	}
+
+}
+
+Child.java:
+```````````
+
+package com.jse.inheritance;
+
+public class Child extends Parent{
+
+	public Child()
+	{
+		System.out.println(this.hashCode());
+	}
+}
+
+Test1.java:
+```````````
+
+package com.jse.inheritance;
+
+public class Test1 {
+	
+	public static void main(String[] args) {
+		
+		Child obj = new Child();
+		
+		
+	}
+
+}
+
+
+
 
 
 
