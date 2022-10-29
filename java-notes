@@ -3081,6 +3081,193 @@ assignment:
 try to override the static method.
 
   
+day-10:
+````````
+
+abstraction:
+````````````
+abstraction is one of the ooop principle.
+
+highlighting the services which are offered by the company 
+by hiding implementation details.
+
+
+
+       insert atm card -> enter the pin -> withdraw the money
+	   
+	   
+sending the whatsapp message-> 
+
+  security
+  enhancements
+  modularity
+  maintainence
+  
+  ->abstract class(partial abstraction)
+  ->interface
+  
+  
+
+abstract class:
+```````````````
+partial implementation class.
+
+in java, we have two types of classes 
+
+  ->concrete class / implementation class/fully defined class
+  
+  ->abstract class /parital implementation class //undefined classs
+  
+  
+  
+concrete class: is a class which contains only defined methods
+
+defined method: it is a method which contains method heading + method body
+
+abstract class: 
+it is a class which contains both defined methods and as well as 
+undefined methods also.
+
+  abstract class Test1{
+     //concrete method
+     void m1(){System.out.println("m1");}
+	 //abstract method or undefind method 
+     abstract void m2();
+  
+  }
+  
+    
+	
+
+
+note:
+`````
+to make normal method as an abstract method we have to use abstract keyword
+explicitly.
+
+if a class contains atleast one abstract method the corresponding class 
+also will become as abstract class.
+
+
+q)are we able to create the object for abstract class or not?
+
+ no, we are not allowed to create the object for an abstract class.
+ 
+ 
+ 
+ 
+if a method is going to be common for all the implementation classes 
+then it is highly recommended 
+
+method name is common 
+but logic is different from one implementation class to another implementation  class.
+
+Test1.java:
+```````````
+package com.jse.abstraction;
+//abstract class or undefined class
+public abstract class Test1 {
+	//defined method
+	public void sum(int x, int y)
+	{
+		System.out.println("sum: " + (x+y));
+	}
+	//abstract method or undefined method
+	public abstract void sub(int x, int y);
+	
+	public Test1()
+	{
+		System.out.println("constructor");
+	}
+
+}
+
+
+Test2.java:
+````````````
+package com.jse.abstraction;
+
+//child class cum implementation class cum execution logic class
+public class Test2 extends Test1 {
+
+	@Override
+	public void sub(int x, int y) {
+		System.out.println("substraction: " + (x - y));
+
+	}
+	
+	public static void main(String[] args) {
+		
+		Test2 obj = new Test2();
+		
+		obj.sum(3, 4);
+		obj.sub(4, 3);
+		
+	}
+
+}
+
+
+Test3.java:
+````````````
+package com.jse.abstraction;
+
+public class Test3 extends Test1 {
+
+	@Override
+	public void sub(int x, int y) {
+		System.out.println("multiplication: " + (x*y));
+
+	}
+	public static void main(String[] args) {
+		
+		
+		Test1 obj;
+		obj= new Test3();
+		
+		obj.sub(4, 3);;
+	}
+
+}
+
+
+
+
+
+can we define constructor inside an abstract class?
+
+   yes we can define
+   
+  constructor(s) always executed whenever we create the object.
+  
+  
+because for every constructor super() statement is added by the java compiler internally 
+which inturns calls parent class constructor(s).
+
+
+note:
+if we want to define the implementation class for any abstract class 
+we have to provide the logic for all the abstract method if you are not 
+providing the logic for atleast one abstract method then the implemention 
+class also will become an abstract class.
+
+
+
+parial abstraction 
+
+interface:
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
