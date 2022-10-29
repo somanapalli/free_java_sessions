@@ -2669,6 +2669,420 @@ public class Test1 {
 
 
 
+day-9:
+`````
+
+polymorphism:
+`````````````
+poly -many
+morphism -forms
+
+
+ we do have two types of polymorphisms are there
+ 1.compile time polymorphism
+ 2.runtime polymorphism
+ 
+
+method overloading-
+method overriding-
+
+
+
+
+method overloading:
+```````````````````
+
+  method overloading is the process of defining the method name as same
+  by changing signature.
+  
+  
+    method name is same
+    signature is different
+	  -no.of arguments
+	  -type of arguments
+	  -order of arguments 
+	  
+	  
+  public void m1(int x)
+  {
+    //logic
+  }
+  
+  public void m1(float x)
+  {
+    //logic
+  }
+  
+
+
+demo program:
+``````````````
+package com.jse.inheritance;
+
+public class Test2 {
+	
+	
+	public void m1(int x)
+	{
+		System.out.println("integer argument");
+	}
+	
+	public void m1(String x)
+	{
+		System.out.println("String argument");
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		Test2 obj = new Test2();
+		obj.m1(100);
+		obj.m1("rama");
+		
+		
+		
+	}
+
+}
+
+compile time polymorphism:
+``````````````````````````
+this is the polymorphism where method resolution or binding can be decided
+at compiletime by the java compiler based on the reference variable not 
+based on the object type.
+
+
+method overloading is the best example for compile time polymorphism.
+
+example:
+````````
+package com.jse.inheritance;
+
+public class Test2 {
+	
+	
+	public void m1(int x)
+	{
+		System.out.println("integer argument");
+	}
+	
+	public void m1(float x)
+	{
+		System.out.println("float argument");
+	}
+	
+	
+	public static void main(String[] args) {
+		//object declaration 
+		Test2 obj;
+		//object referencing
+		obj= new Test2();
+		
+		obj.m1(100);//method resolution will be happend at compile time based on reference variable
+		obj.m1(3.4f);
+		
+		
+	}
+
+
+}
+
+
+
+example on method overloading with automatic/implict promotion:
+````````````````````````````````````````````````````````````````
+package com.jse.inheritance;
+
+public class Test2 {
+	
+	// byte->short->char->int->long->float->double 
+	/*
+	 * public void m1(int x) { System.out.println("integer argument"); }
+	 */
+	
+	public void m1(float x)
+	{
+		System.out.println("float argument");
+	}
+	
+	
+	public static void main(String[] args) {
+		//object declaration 
+		Test2 obj;
+		//object referencing
+		obj= new Test2();
+		
+		obj.m1(100);//method resolution will be happend at compile time based on reference variable
+		obj.m1(3.4f);
+		obj.m1('c');//integer argument
+		obj.m1(20L);//float argument
+		
+		//compile time error:obj.m1(34.56);
+	
+	}
+
+}
+
+
+case:
+``````
+package com.jse.inheritance;
+
+public class Test2 {
+	
+	public void m1(int x, float y)
+	{
+		System.out.println("int-float argument");
+	}
+	
+	public void m1(float x, int y)
+	{
+		System.out.println("float-int argument");
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		
+		Test2 obj = new Test2();
+		obj.m1(100,24.f);
+		obj.m1(24.f,100);
+		//obj.m1(10,10);->compile time error
+		//obj.m1(10.5f,4.5f);->compile time error
+		
+	}
+
+}
+
+
+case:
+`````
+package com.jse.inheritance;
+
+public class Test2 {
+	
+	public void m1(Object o)
+	{
+		System.out.println("object class");
+	}
+	
+	public void m1(String s)
+	{
+		System.out.println("String class");
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		Test2 obj = new Test2();
+		
+		obj.m1(new Object());
+		obj.m1(new String("Rama"));
+		obj.m1(null);
+		
+		
+	}
+
+}
+
+
+note:
+`````
+if exact match is not there java compiler will give the prefernce to subclass version i.e.the method which is accepting String as an argument.
+
+example:
+`````````
+package com.jse.inheritance;
+
+public class Test2 {
+	
+
+	
+	public void m1(String s)
+	{
+		System.out.println("String version");
+	}
+	public void m1(StringBuffer sb)
+	{
+		System.out.println("StringBuffer version");
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		Test2 obj = new Test2();
+		obj.m1("rama");
+		
+		obj.m1(new StringBuffer("rama"));
+		
+		//obj.m1(null);->compile time error
+		
+	}
+
+}
+
+
+note:
+````
+to perform method overloading one java class is enough.
+
+
+method overriding:
+````````````````````
+
+   it is the process of defining method name as same 
+   but logic is different from parent class to child class.
+   
+   note:
+   to perform method overriding, minimum we require two classes 
+   with parent child relation.
+   
+   
+note:
+`````
+it is highly recommended to use @Override annotation on top of overriding 
+method.
+
+example:
+`````````
+package com.jse.inheritance;
+
+public class Parent  {
+	//overriden method
+	public void operation(int x, int y)
+	{
+	  System.out.println("sum: " +(x+y));
+	}
+}
+
+Child.java:
+``````````
+package com.jse.inheritance;
+
+public class Child extends Parent {
+
+	//overriding method
+	@Override
+	public void operation(int x, int y) {
+		System.out.println("multiplicaton: " + (x*y));
+	}
+	
+}
+
+Test1.java:
+````````````
+package com.jse.inheritance;
+
+public class Test1 {
+	
+	public static void main(String[] args) {
+		
+		
+		Child obj = new Child();
+		obj.operation(4, 5);
+	}
+
+}
+
+
+note:
+`````
+private methods can't be overriden.
+
+note:
+`````
+while we are overridng the method, it is always possible to increase the
+visibility scope not possible to decrease the scope of the visibility.
+
+   private < default < protectd < public.
+   
+   
+note:
+``````
+final methods can't be participated in overriding.
+
+
+non final to final is possible while we are overriding.
+
+but final to not final is not possible.
+
+method overriding with respect to exceptions. we do have some rules.
+
+runtime polymorphism:
+
+method resolution can be happend at runtime based on the object type 
+not based on the refernce variable. 
+
+Parent.java:
+``````````````
+
+package com.jse.inheritance;
+
+public class Parent  {
+	//overriden method
+	public  void operation(int x, int y)
+	{
+	  System.out.println("sum: " +(x+y));
+	}
+}
+
+//private<default<protected<public
+
+
+
+
+Child.java:
+````````````
+package com.jse.inheritance;
+
+public class Child extends Parent {
+
+	//overriding method
+	
+	public  void operation(int x, int y){
+		System.out.println("multiplicaton: " + (x*y));
+	}
+	
+	public void m1()
+	{
+		System.out.println("child specific method");
+	}
+	
+}
+
+
+Test1.java:
+```````````
+package com.jse.inheritance;
+
+public class Test1 {
+	
+	public static void main(String[] args) {
+		
+		
+		Child obj = new Child();
+		obj.operation(4, 5);
+		obj.m1();
+		
+		Parent obj1 = new Parent();
+		obj1.operation(3,4);
+		
+		//object type casting downcasting,upcasting
+		Parent obj2;
+		obj2= new Child();
+		obj2.operation(3, 4);
+		//compile time error: obj2.m1();
+		
+	}
+
+}
+
+assignment:
+try to override the static method.
+
+  
+
+
 
 
 
