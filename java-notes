@@ -3253,9 +3253,333 @@ class also will become an abstract class.
 
 
 
-parial abstraction 
+day-11 session:
+``````````````
 
-interface:
+  abstraction in java using two 
+  
+  1.abstract class
+  2.interface
+  
+
+2.interface:
+``````````````
+interface is a collection of only abstract methods only unimplemented methods.
+
+basically interface is used to provide or declare specifications. 
+
+ >security,maintainence,enhancements,...
+ 
+ 
+ syntax:
+ 
+            interface <interfacename>
+			{
+			
+			   //abstract methods
+			}
+
+how can we bring the properties from interface to class?
+
+  using "implements" keyword 
+
+  
+  
+  
+extends -> class to class or interface to interface (homogenious)
+implements -> interface to class to provide the logic
+
+
+
+
+i1.java:
+````````
+package com.jse.abstraction;
+
+public interface i1 {
+
+	public void sum(int x, int y);
+}
+
+
+Test4.java:
+````````````
+
+package com.jse.abstraction;
+//implementation class cum execution logic class
+public  class Test4 implements i1  {
+
+	@Override
+	public void sum(int x, int y) {
+		System.out.println("sum is: " +(x+y));
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		i1 obj  = new Test4();
+		obj.sum(2, 3);
+		
+	}
+
+	
+
+}
+
+
+Test5.java:
+````````````
+package com.jse.abstraction;
+
+public class Test5 implements i1 {
+
+	@Override
+	public void sum(int x, int y) {
+		System.out.println("substraction: " +(x-y));
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		i1 obj = new Test5();
+		obj.sum(5,4);
+	}
+
+}
+
+
+note:
+if we take the properties from interface to class, we have to provide the 
+logic for each and every abstract method otherwise the implementation class
+also will become as abstract class.
+
+
+note:
+we can define the implementation class by implementing from more than one interface since java supports multiple inheritance through the concept of 
+interface.
+
+
+interface inheritance:
+
+the process of taking the properties from interface to another interface
+or parent interface to child interface.
+
+
+i1.java:
+````````
+package com.jse.abstraction;
+
+public interface i1 {
+
+	public void sum(int x, int y);
+	
+	
+}
+
+
+i2.java:
+````````
+package com.jse.abstraction;
+
+//sub interface or child interface or interface inheritance
+public interface i2 extends i1 {
+	
+	public void mul(int x, int y);
+
+}
+
+
+Test4.java:
+```````````
+package com.jse.abstraction;
+//implementation class cum execution logic class
+public  class Test4 implements i2  {
+
+	@Override
+	public void sum(int x, int y) {
+		System.out.println("sum is: " +(x+y));
+		
+	}
+	
+	@Override
+	public void mul(int x, int y) {
+		System.out.println("mutlitplication: "  +(x*y));
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		/*Test4 obj = new Test4();
+		obj.sum(3, 4);
+		obj.mul(4, 5);*/
+		
+		i2 obj = new Test4();
+		obj.sum(3, 4);
+		obj.mul(3, 4);
+		
+	}
+
+}
+
+note:
+`````
+by default interface methods are public abstract and by default 
+interface variables are public static final.
+
+
+
+one use case:
+```````````
+
+Bank as an interface 
+   
+   interface Bank{
+     double getRateOfInterest()
+	}
+	
+method name is common 
+but logic is different from one implementation class to another 
+implementation class.
+
+	
+note:
+like class, for interface also java compiler will generate .class file(s)
+
+Bank.java:
+``````````
+package com.jse.abstraction;
+
+public interface Bank {
+	
+	double getRateOfInterest();
+
+}
+
+Icici.java:
+```````````
+package com.jse.abstraction;
+
+public class Icici implements Bank {
+
+	@Override
+	 public double getRateOfInterest() {
+		return 6.1;
+	}
+
+}
+
+CityBank.java:
+`````````````
+package com.jse.abstraction;
+
+public class CityBank implements Bank {
+
+	@Override
+	public double getRateOfInterest() {
+		// TODO Auto-generated method stub
+		return 8.5;
+	}
+
+}
+
+Test6.java:
+```````````
+package com.jse.abstraction;
+
+public class Test6 {
+	
+	public static void main(String[] args) {
+		
+		Bank obj = new Icici();
+		System.out.println("icici bank rate of interest is: " + obj.getRateOfInterest());
+		Bank cb = new  CityBank();
+		System.out.println("city bank rate of interest is : " + cb.getRateOfInterest());
+	}
+
+}
+
+encapsulation:
+``````````````
+ advantage: data hiding 
+ 
+encapsulation is the process of wrapping up of variables and methods 
+into a single unit.
+
+
+ to make any java class as an encapsulated class, we have to follow 
+ below rules.
+ 
+  1.each variable must be private(data hiding)
+  2. for every variable we have to maintain both  public getter methods and as well as public setter methods.
+
+  
+note:
+using encapsulaion, we do have more control on top of data. 
+
+Student.java:
+``````````````
+package com.jse.abstraction;
+//encapsulated class-data hiding
+public class Student {
+	//private variables
+	private int stid;
+	private String stname;
+	//setter method
+	public void setStid(int stid)
+	{
+		this.stid=stid;
+	}
+	//getter method
+	public int getStid()
+	{
+		return stid;
+	}
+	
+	public void setStname(String stname)
+	{
+		this.stname=stname;
+	}
+	
+	public String getStname()
+	{
+		return stname;
+	}
+
+}
+
+Test7.java:
+```````````
+
+package com.jse.abstraction;
+
+public class Test7 {
+	
+	public static void main(String[] args) {
+		
+		
+		Student obj = new Student();
+		
+		obj.setStid(100);
+		obj.setStname("rama");
+		
+		System.out.println("student id: " + obj.getStid());
+		
+		System.out.println("student name:  " + obj.getStname());
+		
+	}
+
+}
+
+
+ 	 
+  
+
+
+
+
+
+
+
 
 
 
