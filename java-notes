@@ -3575,6 +3575,65 @@ public class Test7 {
   
 
 
+day-12 session:
+````````````````
+object type casting:
+`````````````````````
+type casting at primitive level 
+
+  widening type casting/implicit  from lower datatype to higher datatype
+  
+   int x = 100; long y =100;
+   
+   long y = x;  int x =(int)y;
+   
+
+we may have parent class, and child class 
+
+  parent object 
+  child object
+  
+  downcasting ->from parent object type to child object type
+  
+     explicitly we have to perform this.
+  
+  upcasting ->from child object type to parent objec type
+  
+     it happend automatically
+
+
+
+3 rules of object typecasting:
+``````````````````````````````
+
+ Object obj = new Object();
+ 
+ String str = (String)obj;
+  A      b      C      d
+  
+  
+rule1:
+```````
+the type of d and C must have some relationship
+either parent to child or child to parent or same otherwise we will 
+get compile time error.
+
+rule2:
+```````
+C must be either same or derived type of A, 
+otherwise we will get compile time error.
+
+rule3(at runtime)
+````````````````````
+the underlying original object type of 'd' must be either same or 
+derived type of 'C'.
+
+  
+
+
+
+
+day-13 finished
 
 
 
@@ -3582,23 +3641,1341 @@ public class Test7 {
 
 
 
+day-14:
+```````
+exception handling:
+``````````````````
+
+  java is robust
+  
+exception:
+
+  compile->compile time errors -> not following syntaxes
+  run->jvm ->
+  
+    100 20
+	 120
+	 jvm will process only valid input
+	 jvm will not process invalid data.
+	 
+	 
+jvm will give you error -> exception 
+
+
+runtime error -exception 
+
+
+drawbacks of exception:
+
+ ->control terminated abnormally
+ ->it gives system error messages which are not understandable by 
+   end user(s).
+   
+   
+---
+-
+- int x= 100/0;
+=-
+997 lines 
+
+100 lines of code 
+
+
+  java.lang.ArithmeticException: /by zero
+  
+  5000
+  7000
+   insufficient fund's please check ur account
+   
+   
+	
+	
+  
+
+
+
+we can handle the exceptions using few keywords in java
+
+ 1.try
+ 2.catch
+ 
+ 3.finally
+ 
+ 4. throws
+ 5.throw 
+ 
+ advantages of handling exceptions:
+ 
+ 1. achieving normal flow of execution 
+ 2. getting user friendly messages instead of system error messages
+ 
+ 
+
+
+every exception is internally it is a class.
+
+
+types of execptions:
+
+ 1.predefined exceptions-
+ >pre defined classes 
+ available in predefined pacakge(S)
+ 
+  pre-defined exceptions are the predefined classes 
+  which are available in pre defined packages.
+  
+  purpose: 
+  to handle universal problems
+  
+  passing 0 as denominator
+  passing alphabet to perform arithmetic operators
+  ...
+  
+  IOException (java.io)
+  SQLException (java.sql)
+  ...
+  
+  
+ 
+ 
+ 2.user defined excepitons
+ 
+ 
+   user defined exceptions are also user defined classes 
+   purpose: to handle our own problems
+   
+   
+     age -> -98
+	 
+	   InvalidAgeException 
+	   
+	   100kg -valid product
+	   90kg -> InvalidProductException 
+	   
+	   
+
+exception class hierarchy:
+`````````````````````````
+
+ predefined exceptions 
+
+   -synchronous exceptions ->programtical logical errors
+   
+   note: 
+   for all synchronous exceptions we are using java.lang.Exception as 
+   the super class.
+   
+   1.unchecked exceptions->RuntimeException 
+   
+   2.checked exceptions
+   
+   
+     java.lang.Exception 
+	 
+   
+Object
+ Throwable   
+  Exceptioon   
+   RuntimException
+      ArithmeticExcpeption 
+	  NumberFormatException 
+	  ...
+   
+   -asynhronous exceptions->hardware failures
+   
+    Error 
+     OutOfMemoryError
+	 StackOverFlowError
+	
+ unchecked exceptions
+
+
+ ->at runtime
+CHECKED exceptions are checked by java compiler to esacpe from runtime error(s).
+
+
+ day-15:
+ ```````
+try
+catch
+finally
+throws
+throw
+
+try:
+````
+using try block what we can do?
+
+purpose: it is used to keep the problematic statements which causes
+problems at runtime.
+
+
+try
+{
+//problematic statments
+}
+
+catch block:
+````````````
+catch block is used to catch the specific exception and provides user friendly message.
+
+  catch(<exceptionclassname> <variablename>)
+  {
+   //user friendly message
+  }
+  
+
+
+synchrnous exceptions 
+
+  checked 
+      checked execptions are checked by java compiler to esacape from 
+	  runtime errors. 
+	  
+	  FileNotFoundException 
+	  IOException 
+	  ClassNotFoundException 
+	  SQLException 
+	  
+	     -Exception 
+  un-checked exceptions are checked by jvm only at runtime 
+  
+    ->RuntimException
+
+
+while we are handling the exceptions we have to maintain the order
+from specific to general otherwise we will get compiletime error saying 
+that unreachable catch block .
+
+example:
+`````````
+package com.jse.exceptions;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Input;
+
+public class Test1 {
+	
+	public static void main(String[] args) {
+		try {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("enter first number");
+		int x = s.nextInt();
+		
+		System.out.println("enter second number");
+		int y = s.nextInt();
+		
+		int z = x/y;
+		
+		System.out.println("division: " + z);
+		}
+	
+		
+		/*
+		 * catch(ArithmeticException ae) {
+		 * System.out.println("don't enter zero as a denominator"); }
+		 * catch(InputMismatchException ime) {
+		 * System.out.println("please pass only numeric values"); }
+		 */
+		
+		
+		catch(RuntimeException re)
+		{
+			if(re instanceof ArithmeticException)
+				System.out.println("don't enter zero as a denominator");
+			if(re instanceof InputMismatchException)
+				System.out.println("please pass only numerics");
+		}
+		 
+		
+		System.out.println("rest of the statements executed");
+		System.out.println("rest of the statements executed");
+		System.out.println("rest of the statements executed");
+		
+		
+		
+	}
+
+}
+
+instanceof operator:
+instanceof operator is used to check the type of instance
+
+example:
+````````
+package com.jse.exceptions;
+
+import java.util.ArrayList;
+
+public class Test2 extends Test1{
+	
+	public static void main(String[] args) {
+		
+		Test2 obj1 = new Test2();
+		Test1 obj2 = new Test1();
+	
+		System.out.println(obj1 instanceof Test2);
+		System.out.println(obj2 instanceof Test2);
+	}
+
+}
+
+
+
+
+finally:
+````````
+finally block is used to keep closing related logic.
+
+
+--
+--
+-- opening the file
+--
+-- int x = 100/20;
+--
+--finally{
+--closing the logic
+}
+
+try with only finally without catch block is possible
+try with finally along with catch also fine.
+but make sure in between try and catch we should not add finally after try 
+block always it is expecting catch block only if it is there.
+
+
+day-16:
+```````
+throws and throw
+
+throws:
+``````
+throws is  java reserved keyword
+purpose: 
+it is giving indication to calling function to keep the called function 
+under try and catch block.
+
+Test5.java:
+```````````
+package com.jse.exceptions;
+//called program
+public class Test5 {
+	//called function
+	public void division() throws ArithmeticException
+	{
+	  	//java.lang.ArithmeticException
+	  int x = 100/0;
+	}
+
+}
+
+Test6.java:
+````````````
+package com.jse.exceptions;
+//calling program
+public class Test6 {
+	
+	//calling function
+	public static void main(String[] args) {
+		
+		Test5 obj = new Test5();
+		
+		try {
+		obj.division();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("something wrong in division method");
+		}
+		
+		System.out.println("rest of statements also got executed");
+	}
+
+}
+
+
+
+throw:
+``````
+throw is a java reserved keyword used to throw an exception explicitly.
+
+
+syntax:
+
+     throw new <exceptionclassname>();
+	 
+	 
+ ArithmeticException can be thrown by jvm automatically when it met 
+ some condition 
+ 
+   creating an object only.
+   
+ 
+ 
+take one scenario
+ 
+ ecommerce project
+   
+     product based on the weight
+	 
+	 if weight is >100 product is valid
+	 else 
+	 
+	   InvalidProductException
+	   
+	   
+	 
+or it is used to define customized execptions or user defined exceptions.
+
+
+package com.jse.exceptions;
+
+public class Test7 {
+
+	public void checkProduct(int weight) {
+		if (weight > 100) {
+			System.out.println("product is valid");
+		} else {
+			try {
+				throw new InvalidProductException();
+			} catch (InvalidProductException ipe) {
+				System.out.println("product weight must be greater than 100kgs");
+			}
+		}
+		System.out.println("rest of the statements executed");
+	}
+
+	public static void main(String[] args) {
+
+		Test7 obj = new Test7();
+		obj.checkProduct(20);
+	}
+
+}
+
+InvalidProductException.java:
+```````````````````````````````
+package com.jse.exceptions;
+
+public class InvalidProductException extends Exception  {
+
+}
+
+
+day-17:
+```````
+
+File handling in java:
+````````````````````````
+io streams
+
+ -input output stream
+ 
+ 
+stream: 
+ flow of data in between primary memory to secondary memory
+ viceversa.
+ 
+    Ram
+	harddisck/pendrive/flopydisck
+	 
+on top of files, we can perform two types of operations
+
+  1.read operation
+  2.write operation
+  
+  
+already i have a file whcih contains some data
+ 
+  -accessing the data. 
+  -reading the data 
+  
+  -input stream 
+  
+   where file is available -> secondary memory device
+   
+    secondary memory to primary memory
+	
+  write opertion 
+  
+    -output stream 
+	
+    -storing the data 
+	 
+	 primary memory -> secondary memory
+	 
+	
+data flow is happening in two forms
+
+  1. byte stream -> byte by byte -> 8 bits at a time
+  
+  
+  2. character stream -> character by character ->  2 bytes -> 16 bits
+  
+  
+
+java.io package
+
+
+character stream related classes:
+`````````````````````````````````
+
+
+  FileReader
+  
+  BufferReader
+  
+    -performing read/input stream  operations 
+	
+
+ 	
+ to perform the write operation or/ output strea operations
+ 
+ 
+ 
+ 
+    -FileWriter
+	-BufferedWriter
+	-PrintWriter
+	
+	
+	
+how can we create the file in java:
+
+  using File class 
+  
+   
+example:
+````````
+package com.jse.ios;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Test1 {
+	
+	public static void main(String[] args) {
+		
+		//create the File class object
+		
+		File f = new File("abc.txt");
+		try {
+		f.createNewFile();
+		
+		System.out.println(f.exists());
+		
+		System.out.println("file created successfully");
+		}
+		catch(IOException ioe) {
+			System.out.println(ioe);
+		}
+		
+	}
+
+}
 
 
 
 
 
 
+FileWriter class:
+
+Example:
+````````
+
+package com.jse.ios;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+//writing this program to perform write operation
+public class Test2 {
+	
+	public static void main(String[] args) {
+		try {
+		FileWriter fw = new FileWriter("abc.txt");
+		
+		fw.write("abc\n");
+		fw.write(98+"\n");
+		fw.write("freejavasessions\n");
+		fw.write(100);
+	
+	
+		
+		fw.flush();
+		
+		System.out.println("write operation successfuly");
+		
+		
+		
+		
+		
+		
+		
+		}
+		catch(IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+		
+	}
+
+}
+
+
+drawbacks of FileWriter:
+`````````````````````````
+1.adding \n for new line , it is not recommended because it may not work 
+ in all operating systems sicne it got implemetned in c language.
+ 
+2.we are not allowed to store specific type of data for example if we try to 
+  store integer data it is getting automatically converted into unicode character which is not desired data.
+
+  
+BufferedWriter:
+`````````````````
+
+example:
+`````````
+package com.jse.ios;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
+public class Test3 {
+	public static void main(String[] args) {
+		try {
+		Writer obj  = new FileWriter("abc.txt");
+		
+		BufferedWriter bw = new BufferedWriter(obj);
+		
+		bw.write(100);
+		bw.newLine();
+		bw.write("abc");
+		bw.newLine();
+		bw.write("learnersstop");
+		bw.newLine();
+		bw.write("rk");
+		bw.newLine();
+		bw.write("vihasys");
+		
+		bw.flush();
+		System.out.println("write operation has done");
+		
+		
+		}
+		catch(IOException io)
+		{
+			System.out.println(io);
+		}
+		
+	}
+
+}
+
+
+drawbacks:
+using BufferedWriter we are not allowed to store specific type of data 
+for example if we pass integer data it is converted into unicode character and gets stored which is not desired value.
+
+to avoid this drawback people will go for next level class
+
+
+PrintWriter:
+````````````
+powerfull class
+to perform write operations 
+
+1.new line issue got resolved
+
+2.any type of data we can store using PrintWriter class.
+
+
+
+example:
+```````````
+package com.jse.ios;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class Test4 {
+	
+	public static void main(String[] args) {
+		
+		try {
+		PrintWriter pw = new PrintWriter("abc.txt");
+		
+		//write the data
+		
+		pw.println(100);
+		pw.println("abc");
+		pw.println("rama");
+		pw.println("learnersstop");
+		
+		pw.println(true);
+		pw.println(23.45);
+		
+		pw.flush();
+		
+		System.out.println("write operation has done");
+		
+		
+		
+		
+		
+		}
+		catch(IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+		
+	}
+
+}
+/*
+output:
+100
+abc
+rama
+learnersstop
+true
+23.45
+
+*/
 
 
 
 
 
 
+read operation :
+````````````````
+FileReader
+BufferedReader
+
+FileReader
+``````````
+input stream 
+secondary memory to primary memory 
+
+read()-> used to read operation 
+read() return type is integer
+if we want to convert into character use type cast operator and then 
+specify the desired data type.
+
+example:
+`````````
+package com.jse.ios;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Test5 {
+	
+	public static void main(String[] args) {
+		try {
+		FileReader fr = new FileReader("abc.txt");
+		
+		int x = fr.read();
+		
+		while(x!=-1) {
+			System.out.print((char)x);
+			x=fr.read();
+		}
+		
+		//close the file
+		fr.close();
+	
+		}
+		catch(IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+	}
+
+}
+
+
+drawback:
+``````````
+since it is a character stream related classes, character by character 
+read operation is happening 
+so that in between secondary memoryt to primary memory no.of to and fro 
+calls gets increased /traffic gets increases because of this performance 
+may be degraded.
+
+that is why we will go for next level class i.e. BufferedReader.
+
+
+BufferedReader:
+```````````````
+
+example:
+`````````
+package com.jse.ios;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+
+//performing read operation using BufferedReader class
+public class Test6 {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		try {
+		//create the Reader object
+		
+		Reader obj = new FileReader("abc.txt");
+		//create the object of BufferedReader class
+		
+		BufferedReader br = new BufferedReader(obj);
+		
+		
+		String result =br.readLine();
+		
+		while(result!=null)
+		{
+			System.out.println(result);
+			result = br.readLine();
+		}
+		
+		
+		//close the files
+		obj.close();
+		br.close();
+		
+		
+		}
+		catch(IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+		
+		
+		
+		
+	}
+
+}
+
+
+day-18:
+```````
+iostreams 
+
+  read and write operations on top of files
+  
+  character stream related classes
+   
+     FileReader
+	 BufferReader
+	 FileWriter
+	 BufferedWriter
+	 PrintWriter
+	 
+
+  ->16bits at a time from pm to sm viceversa
+  
+  
+
+java.io package
+
+
+FileInputStream-reading purpose
+
+
+FileOutputStream -writing purpose
 
 
 
+  character strem -> text data
+  
+  bytestream related classes -> to read the raw data 
+  
+  image/audio/video
+  
+  
+FileInputStream:
+````````````````
+A FileInputStream obtains input bytes from a file in a file system. What files are available depends on the host environment.
+
+
+FileInputStream is meant for reading streams of raw bytes such as image data. 
+
+For reading streams of characters, consider using FileReader.
+
+
+example:
+````````
+package com.jse.ios;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class Test8 {
+	
+	public static void main(String[] args) {
+		try {
+		FileInputStream fis = new FileInputStream("abc.txt");
+		
+		int x = fis.read();
+		
+		while(x!=-1)
+		{
+			System.out.print((char)x);
+			x=fis.read();
+		}
+		}
+		catch(IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+	}
+
+}
+
+FileOutputStream:
+```````````````````
+FileOutputStream is meant for writing streams of raw bytes such as image data. 
+
+For writing streams of characters, consider using FileWriter.
+
+
+example to read and write the image data using FileInputStream and FileOutputStream:
+
+
+package com.jse.ios;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class Test8 {
+	
+	public static void main(String[] args) {
+		try {
+		FileInputStream fis = new FileInputStream("stream-api.jpg");
+		FileOutputStream fos = new FileOutputStream("benny.jpg");
+		int x;
+		while((x=fis.read())!=-1) {
+			
+			fos.write(x);
+		}
+		System.out.println("image created succesfully");
+		}
+		
+		catch(IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+	}
+
+}
+
+
+assignment:
+
+do the same program using BufferedInputStream and BufferedOutputStream 
+
+
+ByteArrayInputStream
+ByteArrayOuputStream 
+
+
+example:
+`````````
+package com.jse.ios;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+//the input stream is created using the array of bytes.
+public class Test9 {
+
+	public static void main(String[] args) {
+
+		byte[] x = { 100, 97, 23 };
+
+		ByteArrayInputStream ba = new ByteArrayInputStream(x);
+		int ch = ba.read();
+
+		while (ch != -1) {
+			System.out.println(ch);
+			ch = ba.read();
+		}
+
+	}
+
+}
+
+example:
+````````
+package com.jse.ios;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+//the input stream is created using the array of bytes.
+public class Test9 {
+
+	public static void main(String[] args) {
+
+		String s = "welcome to freejavasessions";
+		byte[] x = s.getBytes();
+
+		ByteArrayInputStream ba = new ByteArrayInputStream(x);
+		int ch = ba.read();
+
+		while (ch != -1) {
+			System.out.print((char)ch);
+			ch = ba.read();
+		}
+
+	}
+
+}
+
+
+example:
+````````
+package com.jse.ios;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+//the input stream is created using the array of bytes.
+public class Test9 {
+
+	public static void main(String[] args) {
+		try {
+			String data = "Hello free java sessions";
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+			byte[] array = data.getBytes();
+
+			// writes data to the outputstream
+			out.write(array);
+			
+			String streamData = out.toString();
+			
+			System.out.println(streamData);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+
+}
+
+
+assignment:
+``````````
+ DataInputStream 
+ DataOutputStream
+ 
+ 
+day-19:
+````````
+
+serialization and deserialization:
+
+  serialization:
+  ```````````````
+  serialization is the process of writing the object data into 
+  network supported format.
+  
+  our entire data -> object 
+  it is not at all possible -network won't support this object format data.
+  
+  
+  to achieve this serialization ,
+  
+  java.io 
+   
+  ObjectOutputStream 
+  
+    ->writeObject()
+	
+
+example:
+`````````
+Student.java:
+`````````````
+package com.jse.ios;
+
+import java.io.Serializable;
+
+public class Student implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6440716320753758977L;
+	
+	
+	private int stid;
+	private String stname;
+	
+	public int getStid() {
+		return stid;
+	}
+	public void setStid(int stid) {
+		this.stid = stid;
+	}
+	public String getStname() {
+		return stname;
+	}
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
+	
+	public String toString()
+	{
+		return stid + " " + stname;
+	}
+	
+
+}
+
+Test10.java:
+````````````
+package com.jse.ios;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+public class Test10 {
+	
+	public static void main(String[] args) {
+		
+		//create the object for ObjectOutputStream
+		try {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("ram.ser"));
+		
+		Student stu = new Student();
+		stu.setStid(100);
+		stu.setStname("rama");
+		
+		oos.writeObject(stu);
+		
+		System.out.println("serialization process has done");
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+
+}
+
+Deserialization:
+````````````````
+it is the process of reading the object data from the network supported file.
+
+ 
+  ->ObjectInputStream 
+  
+      ->readObject()
+	  
+	  
+
+day-20:
+```````
+collection framework :
+````````````````````
+
+int x = 100;
+int y = 200;
+int z = 300;
+
+
+ ->1000 values 
+ 1000 variables 
+ 
+ to store 1000 values declaring 1000 varialbles, 
+ is not a good programming practice.
+ 
+ 
+Array:
+  
+   using arrays, we can store multiple values in a single variable.
+   
+   int x[]={100,200,300};
+   
+   
+   int x[] =new Integer[5];
+   
+ -> the size is fixed in nature, you can't increase or decrease the memory 
+    at runtime.
+	
+ -> using arrays, we can store only homogenious data, we can't store 
+    heterogenous data.
+	
+ -> inside arrays, we don't have any ready made methods,to perform any 
+    operation, we have to do manually.
+
+ -> internally arrays are not following standard data structures.
+
+ collection framework:
+ ````````````````````
+ it is the standardized mechanism of grouping similar type of data 
+ and differnt type of data into a single entity. 
+ 
+  ->java.util package
+  
+ 
+
+ 
+ few interfaces and few implementation clases
+
+   1 Collection 
+2.List
+          3.Queue
+                             4.Set
+                             5.SortedSet
 
 
  
+
+Collection:
+`````````````
+
+if we want to group similar objects and diffrent objects as a single entity 
+then we should go for Collection .
+
+note:
+Collection is the root interface for all the remaining interface(s)
+there is no direct implementation class for this Collection interface.
+
+
+add()-to add an object
+
+addAll(Collection)
+
+remove()
+removeAll()
+
+
+List:
+`````
+
+  always working based on index
   
+List is the predefined interface avaialble in java.util package
+
+-> it allows both homogenious and heterogenous object(s)
+-> insertion order is preserved
+-> duplicates are allowed
+-> null insertion is possible 
+
+note:
+ collection supports only object data.
+ 
+ 
+ List l = new ArrayList();
+ 
+
+example:
+``````````
+package com.jse.cfw;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		
+		//create the object for List
+		
+		List l = new ArrayList();
+		
+		//add the object
+		l.add(Integer.valueOf(100));
+		l.add(Integer.valueOf(200));
+		l.add(new String("rama"));
+		l.add(Boolean.valueOf(true));
+		l.add(Integer.valueOf(100));
+		l.add(null);
+		
+		System.out.println(l);//[100, 200, rama, true, 100, null]
+		 		
+		
+		l.add(300);
+		System.out.println(l);//[100, 200, rama, true, 100, null, 300]
+		
+		l.add(1, Integer.valueOf(300));
+		
+		System.out.println(l);//[100, 300, 200, rama, true, 100, null, 300]
+	
+		System.out.println(l.remove(1));
+		
+		System.out.println(l);//[100, 200, rama, true, 100, null, 300]
+		
+		l.remove(Integer.valueOf(100));
+		
+		System.out.println(l);//[200, rama, true, 100, null, 300]
+		
+		System.out.println("size of the collection : " + l.size());
+		
+		System.out.println(l.get(1));//rama
+		
+		System.out.println(l);//[200, rama, true, 100, null, 300]
+		
+		List l1 = new ArrayList();
+		l1.add(500);
+		l1.add(400);
+		l1.add(600);
+		
+		l.addAll(l1);
+		
+		System.out.println(l);//[200, rama, true, 100, null, 300, 500, 400, 600]
+		
+		l.removeAll(l1);
+		
+		System.out.println(l);//[200, rama, true, 100, null, 300]
+		
+		
+		System.out.println(l.contains(200));
+		
+		System.out.println(l.isEmpty());
+		
+		l.clear();
+		System.out.println(l.isEmpty());
+		
+		System.out.println(l);//[]
+		
+		
+	}
+}
+
+
+assignment:
+do the same program w.r.to LinkedList
+
+
+Collection 
+List
+   ArrayList
+   LinkedList
+   
+
+
+
+
+
   
