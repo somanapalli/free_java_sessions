@@ -4972,7 +4972,152 @@ Collection
 List
    ArrayList
    LinkedList
+   Stack
+   Vector
    
+   
+  
+
+
+  
+day-21:
+```````
+eventhough we are passing primitive data internally it is getting converted
+into object format.
+
+autoboxing and autounboxing
+`````````````````````````````
+
+Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. 
+
+For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called unboxing.
+
+java compiler:
+
+autoboxing: primitive type to object type
+autounboxing: object type to primitive type
+
+
+difference between ArrayList and LinkedList:
+
+ArrayList internally follows dynamic array algorithm to store the elements 
+and if our frequent operation is accessing / retrieval then it is highly 
+recommended to use this ArrayList.
+
+   ArrayList implements RandomAccess
+   {
+   }
+
+
+LinkedList internally follows doubly linkedlist algorithm where the data 
+is getting stored based on the node wise. 
+that's why if our frequent operation is insertion/deletion/updation we can 
+go for LinkedList because no shift operations are happend like ArrayList.
+
+
+
+
+Queue:
+```````
+
+Queue is also sub interface of Collection 
+
+->if we want to represent a group of individual objects prior to processing
+then we should go for Queue and Queue follow First In First Out algorithm
+
+
+
+  Queue
+  
+   -ArrayDeque
+   -LinkedList
+   -PriorityQueue
+   
+   
+boolean offer(Object obj)
+Object poll()
+Objet remove()
+Object peek()-will give you head element->null
+Object element()-will give you head element ->exception 
+
+...
+
+in case of ArrayDeque and LinkedList 
+
+  -it allows both homogenious and heterogenous data
+  -duplicates are allowed
+  -insertion order is preserved
+  -null insertion is possible only if implementation class is LinkedList
+   in case of ArrayDeque it gives you NullPointerException
+
+in case of PriorityQueue 
+
+  -it allows only homogenious data
+  -insertion order is not preserved
+  -duplicates are allowed
+  -null insertion is not possible if you try for that it gives you 
+   NullPointerException 
+   
+   
+
+example:
+````````
+package com.jse.cfw;
+
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Test4 {
+	
+	public static void main(String[] args) {
+		
+		Queue obj = new LinkedList();
+		
+		obj.offer("rama");
+		obj.offer("freejava");
+		obj.offer("benny");
+		obj.offer("shekhar");
+		obj.offer("shekhar");
+		obj.offer(null);
+		
+		
+		
+		
+		
+		
+		System.out.println(obj);
+		
+		System.out.println(obj.poll());
+		
+		
+		System.out.println("head: " +obj.element());
+		
+		System.out.println("head:" + obj.peek());
+		
+		obj.clear();
+		
+		//System.out.println(obj.element());//NoSuchElementException
+		
+	    System.out.println(obj.peek());
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
