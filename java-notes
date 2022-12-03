@@ -5319,6 +5319,214 @@ public class Test6 {
 
 
 
+day-23:
+````````
+
+how to add user defined objects to the TreeSet:
+```````````````````````````````````````````````
+package com.jse.cfw;
+
+public class Student implements Comparable<Student> {
+
+	private int stid;
+	private String stname;
+
+	public int getStid() {
+		return stid;
+	}
+
+	public void setStid(int stid) {
+		this.stid = stid;
+	}
+
+	public String getStname() {
+		return stname;
+	}
+
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
+
+	public Student() {
+
+	}
+
+	public Student(int stid, String stname) {
+		this.stid = stid;
+		this.stname = stname;
+
+	}
+
+	public String toString() {
+		return stid + " " + stname;
+	}
+
+
+
+	
+
+	@Override
+	public int compareTo(Student o) {
+		
+		if(stid>o.getStid())
+		{
+			return -1;
+		}
+		else if(stid<o.getStid())
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+
+
+	
+}
+
+
+
+Test6.java:
+````````````
+package com.jse.cfw;
+
+import java.util.TreeSet;
+
+public class Test6 {
+
+	public static void main(String[] args) {
+
+		TreeSet<Student> s = new TreeSet();
+
+		Student st1 = new Student(10,"chenna");
+		Student st2 = new Student(8,"venkat");
+		
+		s.add(st1);
+		s.add(st2);
+		
+		System.out.println(s);
+		
+	}
+
+}
+
+note:
+To add any object to TreeSet it should be homogenious and Comparable objects
+otherwise we will get java.lang.ClassCastException.
+
+example on overriding equals() and hashCode():
+```````````````````````````````````````````````
+
+Student.java:
+``````````````
+package com.jse.cfw;
+
+public class Student  {
+
+	private int stid;
+	private String stname;
+
+	public int getStid() {
+		return stid;
+	}
+
+	public void setStid(int stid) {
+		this.stid = stid;
+	}
+
+	public String getStname() {
+		return stname;
+	}
+
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
+
+	public Student() {
+
+	}
+
+	public Student(int stid, String stname) {
+		this.stid = stid;
+		this.stname = stname;
+
+	}
+
+	public String toString() {
+		return stid + " " + stname;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + stid;
+		result = prime * result + ((stname == null) ? 0 : stname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (stid != other.stid)
+			return false;
+		if (stname == null) {
+			if (other.stname != null)
+				return false;
+		} else if (!stname.equals(other.stname))
+			return false;
+		return true;
+	}
+	
+	
+}
+
+Test6.java:
+`````````
+package com.jse.cfw;
+
+import java.util.HashSet;
+
+public class Test6 {
+
+	public static void main(String[] args) {
+
+		HashSet<Student> s = new HashSet();
+
+		Student st1 = new Student(10,"chenna");
+		Student st2 = new Student(10,"chenna");
+		
+		s.add(st1);
+		s.add(st2);
+		
+		System.out.println(s);
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
