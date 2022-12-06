@@ -5698,6 +5698,244 @@ public class Test7 {
 
 
 
+day-25:
+```````
+Comparable:
+``````````
+   Comparable is meant for default sorting order
+       
+	     numbers -> ascending 
+		 string -> alphabetical order
+		 
+		 
+  all wrapper classes and String class are Comparable objects
+  
+  java.lang package 
+  
+  
+     int compareTo()
+	 
+	 > -> +value
+	 < -> -value
+	 = -> 0
+	 
+	 
+Comparable:
+```````````
+Student.java:
+``````````````
+package com.jse.cfw;
+
+public class Student implements Comparable<Student> {
+
+	private int stid;
+	private String stname;
+
+	public int getStid() {
+		return stid;
+	}
+
+	public void setStid(int stid) {
+		this.stid = stid;
+	}
+
+	public String getStname() {
+		return stname;
+	}
+
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
+
+	public Student() {
+
+	}
+
+	public Student(int stid, String stname) {
+		this.stid = stid;
+		this.stname = stname;
+
+	}
+
+	public String toString() {
+		return stid + " " + stname;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + stid;
+		result = prime * result + ((stname == null) ? 0 : stname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (stid != other.stid)
+			return false;
+		if (stname == null) {
+			if (other.stname != null)
+				return false;
+		} else if (!stname.equals(other.stname))
+			return false;
+		return true;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		
+		if(this.stid>o.getStid()) {
+			return -9;
+		}
+		else if(this.stid<o.getStid())
+		{
+			return +9;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+
+	
+	
+}
+
+
+Test8.java:
+```````````
+package com.jse.cfw;
+
+import java.util.TreeSet;
+
+public class Test8 {
+	
+	public static void main(String[] args) {
+		
+		TreeSet<Student> ts = new TreeSet();
+		
+		ts.add(new Student(1000,"Rama"));
+		ts.add(new Student(101,"john"));
+		
+		
+		
+		System.out.println(ts);
+	}
+
+}
+
+
+Student.java:
+````````````
+package com.jse.cfw;
+
+public class Student implements Comparable<Student> {
+
+	private int stid;
+	private String stname;
+
+	public int getStid() {
+		return stid;
+	}
+
+	public void setStid(int stid) {
+		this.stid = stid;
+	}
+
+	public String getStname() {
+		return stname;
+	}
+
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
+
+	public Student() {
+
+	}
+
+	public Student(int stid, String stname) {
+		this.stid = stid;
+		this.stname = stname;
+
+	}
+
+	public String toString() {
+		return stid + " " + stname;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + stid;
+		result = prime * result + ((stname == null) ? 0 : stname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (stid != other.stid)
+			return false;
+		if (stname == null) {
+			if (other.stname != null)
+				return false;
+		} else if (!stname.equals(other.stname))
+			return false;
+		return true;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		
+		return -stname.compareTo(o.getStname());
+		
+	}
+	
+}
+
+Comparator:
+``````````
+Comparator interface available inside java.util pacakge
+
+ inside this interface we do have one method
+ 
+   compare(T1,T2);
+   
+	 
+Comparator is meant for getting the data in our own order / custom order
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
