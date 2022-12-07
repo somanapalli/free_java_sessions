@@ -5931,20 +5931,445 @@ Comparator is meant for getting the data in our own order / custom order
 
 
 
+day-26:
+````````
+
+(key,value) pair
+
+Map
+
+   -
+SortedMap
+
+
+A Map doesn't allow duplicate keys, but you can have duplicate values.
+
+A Map can't be traversed
+
+keySet()
+entrySet()
+
+
+HashMap: HashMap is the implementation class of Map, but it doesn't maintain 
+         any order.
+		 
+LinkedHashMap: it is also the implemenataion class of Map, it inherits HashMap class. it maintains insertion order.
+
+
+TreeMap:
+ TreeMap is the implementation class of SortedMap, it maintains ascending order
+ 
+  put() -> insert any entry in to the map 
+   
+   entry ->(key,value)
+   
+   
+  putAll(Map m) -> it is used to insert the specicied map into the existing map.
+  
+  
+
+Map.Entry:
+``````````
+Entry is the inner interface of Map. so we will be accessed it by Map.Entry name.
+
+it returns a collection view of the map.
+
+
+   getKey() 
+   getValue()
+   
+
+example on HashMap:
+```````````````````
+1.HashMap doesn't allow duplicate key objects but it allows duplicate value objects
+2.it allows null values for both key objects and as well as value objects.
+3.insertion order is not preserved.
+
+example:
+````````
+package com.jse.cfw;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		Map m = new HashMap();
+		
+		//adding elements to Map
+		
+		m.put(100, "rama");
+		m.put(200, "amith");
+		m.put(45, "john");
+		m.put(67, "leshvi");
+		m.put(null, null);
+		m.put(67, "charvi");
+		m.put(101, "rama");
+		
+		
+		Set set =m.entrySet();
+		
+		Iterator itr = set.iterator();
+		
+		while(itr.hasNext())
+		{
+			Map.Entry entry = (Map.Entry)itr.next();
+			System.out.println(entry.getKey() + " " + entry.getValue());
+					
+					
+		}
+		
+	}
+
+}
+
+with generics syntax :
+``````````````````````
+package com.jse.cfw;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		Map<Integer,String> m = new HashMap<Integer,String>();
+		
+		//adding elements to Map
+		
+		m.put(100, "rama");
+		m.put(200, "amith");
+		m.put(45, "john");
+		m.put(67, "leshvi");
+		m.put(null, null);
+		m.put(67, "charvi");
+		m.put(101, "rama");
+		
+		
+		Set<Entry<Integer, String>> set = m.entrySet();
+		
+		Iterator<Entry<Integer, String>> itr = set.iterator();
+		
+		while(itr.hasNext())
+		{
+	
+	       Entry<Integer, String> entry = itr.next();
+			System.out.println(entry.getKey() + " " + entry.getValue());
+					
+					
+		}
+		
+	}
+
+}
+
+
+using for each loop traversing map elements:
+````````````````````````````````````````````
+package com.jse.cfw;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		Map<Integer,String> m = new HashMap<Integer,String>();
+		
+		//adding elements to Map
+		
+		m.put(100, "rama");
+		m.put(200, "amith");
+		m.put(45, "john");
+		m.put(67, "leshvi");
+		m.put(null, null);
+		m.put(67, "charvi");
+		m.put(101, "rama");
+		
+		
+		for(Map.Entry<Integer,String> m1: m.entrySet())	
+		{
+			System.out.println(m1.getKey() + " " + m1.getValue());
+		}
+		
+	}
+
+}
+
+LinkedHashMap vs HashMap
+
+all the properties of HashMap are applicable to LinkedHashMap except LinkedHashMap follows insertion order.
+
+
+SortedMap:
+``````````
+SortedMap is the sub interface of Map interface 
+
+ TreeMap is the implementtaion class
+ 
+ 
+1.TreeMap doesn't allows null keys or null values if you try to add we will get
+  runtime exception saying that java.lang.NullPointerException
+  
+2.duplicate keys are not possible where as duplicate values are possible
+
+3.we will get the data in ascending order based on the key objects.
+
+example on top of TreeMap:
+``````````````````````````
+package com.jse.cfw;
+
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		SortedMap<Integer,String> m = new TreeMap<Integer,String>();
+		
+		//adding elements to Map
+		
+		m.put(100, "rama");
+		m.put(200, "amith");
+		m.put(45, "john");
+		m.put(67, "leshvi");
+		
+		m.put(67, "charvi");
+		m.put(101, "rama");
+		
+		
+		for(Map.Entry<Integer,String> m1: m.entrySet())	
+		{
+			System.out.println(m1.getKey() + " " + m1.getValue());
+		}
+		
+	}
+
+}
+
+
+example:
+````````
+package com.jse.cfw;
+
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		SortedMap<Integer,String> m = new TreeMap<Integer,String>();
+		
+		//adding elements to Map
+		
+		m.put(100, "rama");
+		m.put(200, "amith");
+		m.put(45, "john");
+		m.put(67, "leshvi");
+		
+		m.put(67, "charvi");
+		m.put(101, "rama");
+		
+		
+		for(Map.Entry<Integer,String> m1: m.entrySet())	
+		{
+			System.out.println(m1.getKey() + " " + m1.getValue());
+		}
+		
+		System.out.println("===========================");
+		
+		System.out.println(m.firstKey());
+		System.out.println(m.lastKey());
+		System.out.println(m.headMap(100));//{45=john, 67=charvi}
+		System.out.println(m.tailMap(100));//{100=rama, 101=rama, 200=amith}
+		System.out.println(m.subMap(45, 101));//{45=john, 67=charvi, 100=rama}
+		
+		
+	}
+
+}
+
+
+adding user defined object as a value object to the TreeMap:
+```````````````````````````````````````````````````````````
+package com.jse.cfw;
+
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		SortedMap<Integer,Book> m = new TreeMap<Integer,Book>();
+		
+		//create Book Object
+		
+		Book b1 = new Book(1,"java");
+		Book b2 = new Book(2,"angular");
+		Book b3 = new Book(3,"spring");
+		
+		//adding elements to Map
+		
+		
+		
+		m.put(400,b1);
+		m.put(101, b2);
+		m.put(300, b3);
+		
+		
+		for(Map.Entry<Integer,Book> m1: m.entrySet())	
+		{
+			System.out.println(m1.getKey() + " " + m1.getValue());
+		}
+		
+	
+	}
+
+}
 
 
 
+sorting the data in our customized order:
+``````````````````````````````````````````
+package com.jse.cfw;
+
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class Test9 {
+	
+	public static void main(String[] args) {
+		
+		
+		SortedMap<Book,Integer> m = new TreeMap<Book,Integer>(new BookNameComparator());
+		
+		//create Book Object
+		
+		Book b1 = new Book(1,"java");
+		Book b2 = new Book(2,"angular");
+		Book b3 = new Book(3,"spring");
+		
+		//adding elements to Map
+	
+		m.put(b1,400);
+		m.put(b2,101);
+		m.put(b3,300);
+		
+		for(Map.Entry<Book,Integer> m1: m.entrySet())	
+		{
+			System.out.println(m1.getKey() + " " + m1.getValue());
+		}
+		
+	
+	}
+
+}
 
 
+note:
+````
+this sorting happens based on the key object only not based on the value object
+that is the reason your user defined object also must be the key object.
+
+MyCompartor.java:
+`````````````````
+package com.jse.cfw;
+
+import java.util.Comparator;
+
+public class MyComparator implements Comparator<Integer> {
+
+	@Override
+	public int compare(Integer o1, Integer  o2) {
+		
+		return -o1.compareTo(o2);
+	}
+
+}
+
+BookNameComparator.java:
+````````````````````````
+package com.jse.cfw;
+
+import java.util.Comparator;
+
+public class BookNameComparator implements Comparator<Book> {
+
+	@Override
+	public int compare(Book o1, Book o2) {
+		return -o1.getBookName().compareTo(o2.getBookName());
+	}
+
+}
+
+Book.java:
+```````````
+package com.jse.cfw;
+
+public class Book {
+	
+	private int bookId;
+	private String bookName;
+	public int getBookId() {
+		return bookId;
+	}
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	public Book(int bookId, String bookName) {
+		super();
+		this.bookId = bookId;
+		this.bookName = bookName;
+	}
+	
+	public Book()
+	{
+		
+	}
+	@Override
+	public String toString() {
+		return bookId + " " + bookName;
+	}
+	
+	
+
+}
 
 
-
-
-
-
-
-
-
+assignment:
+````````````
+refer about Hashtable and do one program
 
 
 
